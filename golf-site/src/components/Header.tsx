@@ -34,7 +34,7 @@ export default function Header() {
 
         <div className="hidden md:flex items-center gap-4">
           <Link href="/login" className="text-sm font-semibold text-gray-600 hover:text-emerald-600 transition-colors">
-            Log in
+            Login
           </Link>
           <Link
             href="/signup"
