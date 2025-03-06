@@ -76,6 +76,7 @@ export default function LoginForm() {
           id="email" 
           type="email"  
           {...register("email")}
+          error={errors.email?.message}
         />
 
         <div className="relative">
@@ -84,6 +85,7 @@ export default function LoginForm() {
             id="password"
             type={showPassword ? "text" : "password"}
             {...register("password")}
+            error={errors.password?.message}
           />
           <button
             type="button"
