@@ -7,21 +7,55 @@ import { useRouter } from "next/navigation"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import SocialAuth from "@/components/auth/SocialAuth"
 import FormInput from "@/components/auth/FormInput"
+import { z } from "zod"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signup } from "@/app/signup/actions"
+import toast from "react-hot-toast";
+
+const signUpSchema = z.object({
+  firstName: z.string().nonempty("First name is required"),
+  lastName: z.string().nonempty("Last name is required"),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+type SignUpFormInputs = z.infer<typeof signUpSchema>
 
 export default function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const router = useRouter()
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<SignUpFormInputs>({
+    resolver: zodResolver(signUpSchema)
+  });
 
-    // Simulate API call
-    setTimeout(() => {
+  const onSubmit = async (data: SignUpFormInputs) => {
+    setIsLoading(true)
+    setErrorMessage('')
+
+    const response = await signup({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password
+    })
+
+    if (response.error) {
+      setErrorMessage(response.error)
       setIsLoading(false)
-      router.push("/dashboard") // Redirect to dashboard after successful signup
-    }, 1500)
+      return;
+    }
+
+    setIsLoading(false)
+    router.push('/login')
+    toast.success('Account created!')
   }
 
   return (
@@ -37,30 +71,42 @@ export default function SignUpForm() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      {errorMessage && <p className="text-red-500 mb-4 text-center">{errorMessage}</p>}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <FormInput
             label="First name"
             id="firstName"
-            name="firstName"
             type="text"
-            autoComplete="given-name"
-            required
+            {...register("firstName")}
+            error={errors.firstName?.message}
           />
 
-          <FormInput label="Last name" id="lastName" name="lastName" type="text" autoComplete="family-name" required />
+          <FormInput 
+            label="Last name" 
+            id="lastName" 
+            type="text" 
+            {...register("lastName")}
+            error={errors.lastName?.message}
+          />
         </div>
 
-        <FormInput label="Email address" id="email" name="email" type="email" autoComplete="email" required />
+        <FormInput 
+          label="Email address" 
+          id="email" 
+          type="email" 
+          {...register("email")}
+          error={errors.email?.message}
+        />
 
         <div className="relative">
           <FormInput
             label="Password"
             id="password"
-            name="password"
             type={showPassword ? "text" : "password"}
-            autoComplete="new-password"
-            required
+            {...register("password")}
+            error={errors.password?.message}
           />
           <button
             type="button"
@@ -71,27 +117,6 @@ export default function SignUpForm() {
             {showPassword ? <FaRegEye className="h-5 w-5" /> : <FaRegEyeSlash className="h-5 w-5" />}
           </button>
         </div>
-
-        <div className="flex items-center">
-          <input
-            id="terms"
-            name="terms"
-            type="checkbox"
-            className="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-600"
-            required
-          />
-          <label htmlFor="terms" className="ml-2 block text-sm text-gray-600">
-            I agree to the{" "}
-            <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
-              Privacy Policy
-            </a>
-          </label>
-        </div>
-
         <button
           type="submit"
           className="w-full rounded-md bg-emerald-600 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 disabled:opacity-70 disabled:cursor-not-allowed"

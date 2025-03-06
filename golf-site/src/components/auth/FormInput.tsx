@@ -1,21 +1,16 @@
 interface FormInputProps {
     label: string
     id: string
-    name: string
     type: string
-    autoComplete?: string
-    required?: boolean
-    placeholder?: string
+    error?: string
 }
   
 export default function FormInput({
     label,
     id,
-    name,
     type,
-    autoComplete,
-    required = false,
-    placeholder,
+    error,
+    ...inputProps
 }: FormInputProps) {
     return (
       <div>
@@ -25,14 +20,18 @@ export default function FormInput({
         <div className="mt-1">
           <input
             id={id}
-            name={name}
             type={type}
-            autoComplete={autoComplete}
-            required={required}
-            placeholder={placeholder}
-            className="block w-full rounded-md border-gray-300 p-2 shadow-sm text-black focus:ring-emerald-600 sm:text-sm"
+            {...inputProps}
+            className="block w-full rounded-md border border-gray-300 p-2 shadow-sm text-black 
+             focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600 focus:outline-none 
+             sm:text-sm"
           />
         </div>
+        {error && (
+        <p className="mt-1 text-xs text-red-500" role="alert">
+          {error}
+        </p>
+        )}
       </div>
     )
 }

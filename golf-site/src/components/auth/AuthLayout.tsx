@@ -14,14 +14,14 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children, title, subtitle, linkText, linkHref, linkLabel }: AuthLayoutProps) {
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid bg-white lg:grid-cols-2">
       {/* Left side - Form */}
       <div className="flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:max-w-md">
           <div className="mb-10">
             <Link href="/" className="flex items-center gap-2">
               <FaGolfBall className="h-8 w-8 text-emerald-600" />
-              <span className="text-2xl font-bold">GolfPro</span>
+              <span className="text-2xl text-black font-bold">GolfPro</span>
             </Link>
           </div>
           <div className="mb-8">

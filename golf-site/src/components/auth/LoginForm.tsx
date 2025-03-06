@@ -1,28 +1,58 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import SocialAuth from "@/components/auth/SocialAuth"
 import FormInput from "@/components/auth/FormInput"
+import { z } from "zod"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createClient } from "@/lib/supabase/client"
+import toast from "react-hot-toast";
+
+const loginSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+type LoginFormInputs = z.infer<typeof loginSchema>
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const router = useRouter()
+  const supabase = createClient()
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<LoginFormInputs>({
+    resolver: zodResolver(loginSchema)
+  });
+
+  const onSubmit = async (data: LoginFormInputs) => {
     setIsLoading(true)
+    setErrorMessage('')
 
-    // Simulate API call
-    setTimeout(() => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password
+    })
+
+    if (error) {
+      setErrorMessage(error.message)
       setIsLoading(false)
-      router.push("/dashboard") // Redirect to dashboard after successful login
-    }, 1500)
+      return
+    }
+
+    setIsLoading(false)
+    router.push('/')
+    toast.success("Signed in!")
   }
 
   return (
@@ -38,17 +68,22 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <FormInput label="Email address" id="email" name="email" type="email" autoComplete="email" required />
+      {errorMessage && <p className="text-red-500 mb-4 text-center">{errorMessage}</p>}
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <FormInput 
+          label="Email address" 
+          id="email" 
+          type="email"  
+          {...register("email")}
+        />
 
         <div className="relative">
           <FormInput
             label="Password"
             id="password"
-            name="password"
             type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            required
+            {...register("password")}
           />
           <button
             type="button"
@@ -61,18 +96,6 @@ export default function LoginForm() {
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember-me"
-              name="remember-me"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-600"
-            />
-            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-600">
-              Remember me
-            </label>
-          </div>
-
           <Link href="/forgot-password" className="text-sm font-medium text-emerald-600 hover:text-emerald-500">
             Forgot your password?
           </Link>
