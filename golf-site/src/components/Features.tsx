@@ -6,19 +6,19 @@ export default function Features() {
       icon: <FaBookOpen className="h-10 w-10 text-emerald-600" />,
       title: "Learning Center",
       description:
-        "Access hundreds of lessons from PGA professionals. From basics to advanced techniques, improve every aspect of your game.",
+        "Access countless lessons from thousands of hours of fine tuning. From the basics to advanced techniques, improve every aspect of your game.",
     },
     {
       icon: <FaChartBar className="h-10 w-10 text-emerald-600" />,
       title: "Swing Analyzer",
       description:
-        "Upload your swing videos and receive detailed analysis and personalized tips to correct your form and improve consistency.",
+        "Elevate your golf game by uploading your swing videos to receive in-depth analysis and personalized tips, empowering you to refine your technique and achieve lower scores.",
     },
     {
       icon: <FaVideo className="h-10 w-10 text-emerald-600" />,
       title: "Golf Blog",
       description:
-        "Stay updated with the latest golf news, tournament coverage, equipment reviews, and exclusive interviews with top players.",
+        "Stay ahead of the game with real-time golf news, comprehensive tournament coverage, in-depth equipment reviews, and access to premium training aids.",
     },
   ]
 
@@ -31,7 +31,7 @@ export default function Features() {
           </h2>
           <p className="mt-4 max-w-[700px] mx-auto text-gray-600">
             Our comprehensive platform provides all the tools and resources you need to take your golf game to the next
-            level.
+            level
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
