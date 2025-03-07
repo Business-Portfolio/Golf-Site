@@ -1,12 +1,12 @@
 "use client"
 
+import { useState } from 'react'
 import Image from "next/image"
 import FormInput from "./auth/FormInput"
 import { z } from "zod"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addToWaitlist } from "@/app/actions";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const waitlistSchema = z.object({
@@ -16,7 +16,8 @@ const waitlistSchema = z.object({
 type WaitlistFormInputs = z.infer<typeof waitlistSchema>
 
 export default function Hero() {
-  const router = useRouter()
+  const [errorMessage, setErrorMessage] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -27,9 +28,12 @@ export default function Hero() {
   });
 
   const onSubmit = async (data: WaitlistFormInputs) => {
+    setErrorMessage('')
     const response = await addToWaitlist(data.email)
+    console.log(response)
 
     if (response.error) {
+      setErrorMessage(response.error)
       return
     }
 
@@ -56,6 +60,7 @@ export default function Hero() {
             <form onSubmit={handleSubmit(onSubmit)} className="mt-1 w-full md:w-2/3">
               {/* Wrapping the input and button so that the button can be positioned
               absolutely */}
+              {errorMessage && <p className="text-red-500 text-center">Error joining waitlist</p>}
               <div className="relative">
                 <FormInput
                   id="email"
