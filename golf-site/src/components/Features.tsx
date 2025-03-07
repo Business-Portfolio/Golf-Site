@@ -12,7 +12,7 @@ export default function Features() {
       icon: <FaChartBar className="h-10 w-10 text-emerald-600" />,
       title: "Swing Analyzer",
       description:
-        "Elevate your golf game by uploading your swing videos to receive in-depth analysis and personalized tips, empowering you to refine your technique and achieve lower scores",
+        "Elevate your golf game by uploading your swing videos to receive in-depth analysis and personalized tips, empowering you to refine your technique and achieve lower scores.",
     },
     {
       icon: <FaVideo className="h-10 w-10 text-emerald-600" />,
@@ -31,7 +31,7 @@ export default function Features() {
           </h2>
           <p className="mt-4 max-w-[700px] mx-auto text-gray-600">
             Our comprehensive platform provides all the tools and resources you need to take your golf game to the next
-            level.
+            level
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
