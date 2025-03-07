@@ -26,7 +26,7 @@ export default function Blog() {
         "Our team reviews the top golf clubs, balls, and accessories that are perfect for those just starting their golf journey.",
       image: "/placeholder.svg?height=400&width=600",
       category: "Equipment",
-      date: "March 9, 2025",
+      date: "Feb 9, 2025",
     },
   ]
 
