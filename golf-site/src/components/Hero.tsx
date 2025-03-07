@@ -30,7 +30,6 @@ export default function Hero() {
   const onSubmit = async (data: WaitlistFormInputs) => {
     setErrorMessage('')
     const response = await addToWaitlist(data.email)
-    console.log(response)
 
     if (response.error) {
       setErrorMessage(response.error)
