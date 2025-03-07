@@ -4,7 +4,7 @@ import { FaCheck } from "react-icons/fa";
 
 export default function SwingAnalyzer() {
   const benefits = [
-    "AI-powered swing analysis in seconds",
+    "Specific swing analysis in hours or less",
     "Side-by-side comparison with pro swings",
     "Detailed metrics and improvement suggestions",
     "Track your progress over time",
@@ -37,12 +37,11 @@ export default function SwingAnalyzer() {
           </div>
           <div className="order-1 lg:order-2">
             <div className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-800 mb-4">
-              Advanced Technology
+              Advanced Strategy
             </div>
-            <h2 className="text-3xl font-bold text-black tracking-tight sm:text-4xl">AI-Powered Swing Analysis</h2>
+            <h2 className="text-3xl font-bold text-black tracking-tight sm:text-4xl">Tailored Swing Analysis</h2>
             <p className="mt-4 text-gray-600">
-              Upload your swing videos and get instant, professional-level analysis. Our advanced AI technology breaks
-              down every aspect of your swing and provides actionable feedback to help you improve.
+              Upload your swing videos and get instant analysis. Our system takes a strategic approach to improvement, analyzing every aspect of your swing and delivering precise, actionable feedback to help you play your best.
             </p>
             <ul className="mt-6 space-y-3">
               {benefits.map((benefit, index) => (
