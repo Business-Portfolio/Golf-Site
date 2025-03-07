@@ -94,7 +94,7 @@ export default function Hero() {
               <div className="flex h-full w-full items-center justify-center rounded-xl bg-white">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-emerald-600">30%</div>
-                  <div className="text-xs text-black font-semibold">Improve</div>
+                  <div className="text-xs text-black font-semibold">Improvement</div>
                 </div>
               </div>
             </div>
