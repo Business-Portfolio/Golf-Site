@@ -4,7 +4,7 @@ import { FaCheck } from "react-icons/fa";
 
 export default function SwingAnalyzer() {
   const benefits = [
-    "Specific swing analysis returned fast",
+    "Specific swing analysis returned swiftly",
     "Side-by-side comparison with pro swings",
     "Detailed metrics and improvement suggestions",
     "Track your progress over time",
