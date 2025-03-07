@@ -18,7 +18,7 @@ export default function Features() {
       icon: <FaVideo className="h-10 w-10 text-emerald-600" />,
       title: "Golf Blog",
       description:
-        "Stay updated with the latest golf news, tournament coverage, equipment reviews, and top notch training aids.",
+        "Stay ahead of the game with real-time golf news, comprehensive tournament coverage, in-depth equipment reviews, and access to premium training aids.",
     },
   ]
 
