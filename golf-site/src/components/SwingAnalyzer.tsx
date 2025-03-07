@@ -52,14 +52,6 @@ export default function SwingAnalyzer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
-              <Link
-                href="/analyzer"
-                className="inline-flex h-10 items-center justify-center rounded-full bg-emerald-600 px-6 text-sm font-semibold text-white shadow transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-              >
-                Try Swing Analyzer
-              </Link>
-            </div>
           </div>
         </div>
       </div>

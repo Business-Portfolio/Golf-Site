@@ -5,17 +5,22 @@ import Link from "next/link"
 import { FaGolfBall } from "react-icons/fa"
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
-import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { user, logout } = useAuth()
-  const router = useRouter()
 
-  const handleLogout = async () => {
-    await logout()
-    router.push('/')
+  const handleWaitlistClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+
+    window.scrollTo({ top: 0, behavior: "smooth" })
+
+    setTimeout(() => {
+      const emailInput = document.getElementById("email")
+      if (emailInput) {
+        emailInput.focus()
+      }
+    }, 500)
   }
 
   return (
@@ -42,29 +47,9 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-        {user ? (
-            <button
-              onClick={handleLogout}
-              className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"
-            >
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link
-                href="/login"
-                className="text-sm font-semibold text-gray-600 hover:text-emerald-600 transition-colors"
-              >
-                Login
-              </Link>
-              <Link
-                href="/signup"
-                className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"
-              >
-                Get Started
-              </Link>
-            </>
-          )}
+          <Link href="#email" onClick={handleWaitlistClick} className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors">
+            Join the Waitlist
+          </Link>
         </div>
 
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
@@ -103,21 +88,6 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               Blogs
-            </Link>
-            <div className="border-t border-gray-100 my-2"></div>
-            <Link
-              href="/login"
-              className="text-lg font-medium p-2 hover:bg-gray-50 rounded-md"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Log in
-            </Link>
-            <Link
-              href="/signup"
-              className="bg-emerald-600 text-white text-lg font-medium p-2 rounded-md text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Get Started
             </Link>
           </nav>
         </div>

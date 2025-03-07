@@ -1,7 +1,8 @@
 interface FormInputProps {
-    label: string
+    label?: string
     id: string
     type: string
+    placeholder?: string
     error?: string
 }
   
@@ -10,6 +11,7 @@ export default function FormInput({
     id,
     type,
     error,
+    placeholder,
     ...inputProps
 }: FormInputProps) {
     return (
@@ -21,10 +23,10 @@ export default function FormInput({
           <input
             id={id}
             type={type}
+            placeholder={placeholder}
             {...inputProps}
-            className="block w-full rounded-md border border-gray-300 p-2 shadow-sm text-black 
-             focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600 focus:outline-none 
-             sm:text-sm"
+            className="block w-full rounded-full border border-gray-300 py-3 pr-35 pl-1.5 shadow-sm text-black 
+             focus:border-emerald-200 focus:ring-2 focus:ring-emerald-200 focus:outline-none text-sm"
           />
         </div>
         {error && (

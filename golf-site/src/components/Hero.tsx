@@ -1,7 +1,42 @@
-import Link from "next/link"
+"use client"
+
 import Image from "next/image"
+import FormInput from "./auth/FormInput"
+import { z } from "zod"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addToWaitlist } from "@/app/actions";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+const waitlistSchema = z.object({
+  email: z.string().email("Please enter your email address")
+})
+
+type WaitlistFormInputs = z.infer<typeof waitlistSchema>
 
 export default function Hero() {
+  const router = useRouter()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<WaitlistFormInputs>({
+    resolver: zodResolver(waitlistSchema)
+  });
+
+  const onSubmit = async (data: WaitlistFormInputs) => {
+    const response = await addToWaitlist(data.email)
+
+    if (response.error) {
+      return
+    }
+
+    reset()
+    toast.success("Added to waitlist!")
+  }
+
   return (
     <section className="relative overflow-hidden bg-white py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6">
@@ -17,41 +52,28 @@ export default function Hero() {
               Get personalized swing analysis, expert tips, and stay updated with the latest golf news. Your journey to
               becoming a better golfer starts here.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/signup"
-                className="inline-flex h-12 items-center justify-center rounded-full font-bold bg-emerald-600 px-8 text-sm text-white shadow transition-colors hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-              >
-                Start Free Trial
-              </Link>
-              <Link
-                href="#features"
-                className="inline-flex h-12 items-center justify-center text-black rounded-full border border-gray-200 bg-white px-8 text-sm font-semibold shadow-sm transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-              >
-                Learn More
-              </Link>
-            </div>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="inline-block h-8 w-8 rounded-full bg-gray-100 ring-2 ring-white overflow-hidden"
-                  >
-                    <Image
-                      src={`/placeholder.svg?height=32&width=32`}
-                      alt={`User ${i}`}
-                      width={32}
-                      height={32}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ))}
+
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-1 w-full md:w-2/3">
+              {/* Wrapping the input and button so that the button can be positioned
+              absolutely */}
+              <div className="relative">
+                <FormInput
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email address"
+                  {...register("email")}
+                  error={errors.email?.message}
+                  // Add extra right padding so the text doesn't go underneath the button
+                />
+                <button
+                  type="submit"
+                  className="absolute top-1/2 right-0 transform -translate-y-5.5 rounded-full bg-emerald-600 py-3 px-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+                >
+                  Join the Waitlist
+                </button>
               </div>
-              <div>
-                <span className="font-medium">4.9/5</span> from over 2,000 reviews
-              </div>
-            </div>
+            </form>
+            
           </div>
           <div className="relative mx-auto lg:ml-auto">
             <div className="relative aspect-[4/3] w-full max-w-[500px] overflow-hidden rounded-2xl bg-gray-100">
