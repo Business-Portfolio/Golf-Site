@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FaGolfBall } from "react-icons/fa"
-import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
 export default function Footer() {
@@ -13,10 +13,10 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <FaGolfBall className="h-6 w-6 text-emerald-500" />
-              <span className="text-xl font-bold text-white">GolfPro</span>
+              <span className="text-xl font-bold text-white">SwingPerfect</span>
             </Link>
             <p className="mb-4">
-              Elevate your golf game with personalized analysis, expert tips, and the latest golf news.
+              Transform your golf swing with professional video analysis, expert tips, and personalized feedback from PGA teaching pros.
             </p>
             <div className="flex gap-4">
               <Link href="#" aria-label="Facebook">
@@ -31,25 +31,28 @@ export default function Footer() {
               <Link href="#" aria-label="YouTube">
                 <FaYoutube className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
               </Link>
+              <Link href="#" aria-label="TikTok">
+                <FaTiktok className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
+              </Link>
             </div>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Features</h3>
+            <h3 className="text-lg font-bold text-white mb-4">Swing Analysis</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Learning Center
+                  Upload Your Swing
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Swing Analyzer
+                  AI Analysis
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Golf Blog
+                  Pro Feedback
                 </Link>
               </li>
               <li>
@@ -59,38 +62,38 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Community
+                  Sample Analysis
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Resources</h3>
+            <h3 className="text-lg font-bold text-white mb-4">Swing Tips</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Help Center
+                  Driving Distance
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Tutorials
+                  Fix Your Slice
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  FAQ
+                  Iron Play
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Contact Support
+                  Short Game
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Glossary
+                  Pro Swing Secrets
                 </Link>
               </li>
             </ul>
@@ -106,7 +109,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Careers
+                  Our Pros
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-white transition-colors">
+                  Testimonials
                 </Link>
               </li>
               <li>
@@ -119,19 +127,14 @@ export default function Footer() {
                   Terms of Service
                 </Link>
               </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors">
-                  Press Kit
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800 text-sm text-gray-400">
+        <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; {currentYear} GolfPro. All rights reserved.</p>
-            <div className="flex gap-6">
+            <p className="text-sm text-gray-400">&copy; {currentYear} SwingPerfect. All rights reserved.</p>
+            <div className="flex gap-6 text-sm text-gray-400">
               <Link href="#" className="hover:text-white transition-colors">
                 Privacy
               </Link>
@@ -140,6 +143,9 @@ export default function Footer() {
               </Link>
               <Link href="#" className="hover:text-white transition-colors">
                 Cookies
+              </Link>
+              <Link href="#" className="hover:text-white transition-colors">
+                Contact
               </Link>
             </div>
           </div>
