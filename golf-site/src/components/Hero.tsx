@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addToWaitlist } from "@/app/actions";
 import toast from "react-hot-toast";
+import WaitlistTiers from '@/components/WaitlistTiers'
 
 const waitlistSchema = z.object({
   email: z.string().email("Please enter your email address")
@@ -55,28 +56,34 @@ export default function Hero() {
               Get personalized swing analysis, expert tips, and stay updated with the latest golf news. Your journey to
               becoming a better golfer starts here.
             </p>
-
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-1 w-full md:w-2/3">
-              {/* Wrapping the input and button so that the button can be positioned
-              absolutely */}
-              {errorMessage && <p className="text-red-500 text-center">Error joining waitlist</p>}
-              <div className="relative">
-                <FormInput
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email address"
-                  {...register("email")}
-                  error={errors.email?.message}
-                  // Add extra right padding so the text doesn't go underneath the button
-                />
-                <button
-                  type="submit"
-                  className="absolute top-1/2 right-0 transform -translate-y-5.5 rounded-full bg-emerald-600 py-3 px-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
-                >
-                  Join the Waitlist
-                </button>
-              </div>
-            </form>
+            <div>
+              <form onSubmit={handleSubmit(onSubmit)} className="mt-1 w-full md:w-2/3">
+                {/* Wrapping the input and button so that the button can be positioned
+                absolutely */}
+                {errorMessage && <p className="text-red-500 text-center">Error joining waitlist</p>}
+                <div className="relative">
+                  <FormInput
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email address"
+                    {...register("email")}
+                    error={errors.email?.message}
+                    // Add extra right padding so the text doesn't go underneath the button
+                  />
+                  <button
+                    type="submit"
+                    className="absolute top-1/2 right-0 transform -translate-y-5.5 rounded-full bg-emerald-600 py-3 px-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+                  >
+                    Join the Waitlist
+                  </button>
+                </div>
+              </form>
+              <p className="mt-2 text-xs text-gray-600">
+                Join our waitlist to get notified when we launch and receive exclusive perks.{" "}
+              </p>
+            </div>
+          
+            <WaitlistTiers currentCount={67} />
             
           </div>
           <div className="relative mx-auto lg:ml-auto">
