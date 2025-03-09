@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from "next/image"
 import FormInput from "./auth/FormInput"
 import { z } from "zod"
@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addToWaitlist } from "@/app/actions";
 import toast from "react-hot-toast";
 import WaitlistTiers from '@/components/WaitlistTiers'
+import { createClient } from '@/lib/supabase/client'
 
 const waitlistSchema = z.object({
   email: z.string().email("Please enter your email address")
@@ -18,6 +19,8 @@ type WaitlistFormInputs = z.infer<typeof waitlistSchema>
 
 export default function Hero() {
   const [errorMessage, setErrorMessage] = useState('')
+  const [waitlistCount, setWaitlistCount] = useState(0)
+  const supabase = createClient()
 
   const {
     register,
@@ -40,6 +43,22 @@ export default function Hero() {
     reset()
     toast.success("Added to waitlist!")
   }
+
+  useEffect(() => {
+    const getWaitlistCount = async () => {
+      const { count, error } = await supabase
+        .from('waitlist')
+        .select('*', { count: 'exact', head: true })
+      
+      if (error) {
+        console.error("Error fetching waitlist count: ", error)
+      } else {
+        setWaitlistCount(count || 0)
+      }
+    }
+
+    getWaitlistCount()
+  }, [])
 
   return (
     <section className="relative overflow-hidden bg-white py-16 md:py-24">
@@ -83,7 +102,7 @@ export default function Hero() {
               </p>
             </div>
           
-            <WaitlistTiers currentCount={67} />
+            <WaitlistTiers currentCount={waitlistCount} />
             
           </div>
           <div className="hidden lg:block relative mx-auto lg:ml-auto">
