@@ -8,7 +8,7 @@ export default function Blog() {
       title: "10 Tips to Add 20 Yards to Your Drive",
       excerpt:
         "Learn the secrets to increasing your driving distance with these data-driven techniques.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/wade_clubhouse.png",
       category: "Technique",
       date: "Feb 27, 2025",
     },
@@ -16,7 +16,7 @@ export default function Blog() {
       title: "Masters Tournament 2024: Complete Recap",
       excerpt:
         "A comprehensive look at all the action, highlights, and surprising moments from this year's Masters Tournament.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/wade_17.png",
       category: "Tournaments",
       date: "April 16, 2024",
     },
@@ -24,7 +24,7 @@ export default function Blog() {
       title: "Best Golf Equipment for Beginners in 2025",
       excerpt:
         "Our team reviews the top golf clubs, balls, and accessories that are perfect for those just starting their golf journey.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/wade.png",
       category: "Equipment",
       date: "Feb 9, 2025",
     },

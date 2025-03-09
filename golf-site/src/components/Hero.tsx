@@ -86,24 +86,16 @@ export default function Hero() {
             <WaitlistTiers currentCount={67} />
             
           </div>
-          <div className="relative mx-auto lg:ml-auto">
-            <div className="relative aspect-[4/3] w-full max-w-[500px] overflow-hidden rounded-2xl bg-gray-100">
+          <div className="hidden lg:block relative mx-auto lg:ml-auto">
+            <div className="relative aspect-[4/3] w-full h-screen max-w-[500px] overflow-hidden rounded-2xl">
               <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="Golfer using the app"
+                src="/golfer.png"
+                alt="Golfer silhouette"
                 width={800}
                 height={600}
-                className="h-full w-full object-cover"
+                className="object-contain p-6"
                 priority
               />
-            </div>
-            <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-2xl bg-emerald-600 p-2 shadow-lg">
-              <div className="flex h-full w-full items-center justify-center rounded-xl bg-white">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">30%</div>
-                  <div className="text-xs text-black font-semibold">Improvement</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
