@@ -20,7 +20,7 @@ interface WaitlistTiersProps {
 }
 
 export default function WaitlistTiers({
-    currentCount = 67, // Example default value
+    currentCount,
     className = "",
     tiers = [
       {

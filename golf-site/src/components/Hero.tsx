@@ -58,7 +58,7 @@ export default function Hero() {
     }
 
     getWaitlistCount()
-  }, [])
+  })
 
   return (
     <section className="relative overflow-hidden bg-white py-16 md:py-24">
