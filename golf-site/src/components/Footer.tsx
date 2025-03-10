@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <FaGolfBall className="h-6 w-6 text-emerald-500" />
-              <span className="text-xl font-bold text-white">GolfPro</span>
+              <span className="text-xl font-bold text-white">Next Level Golf</span>
             </Link>
             <p className="mb-4">
               Elevate your golf game with personalized analysis, expert tips, and the latest golf news.
