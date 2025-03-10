@@ -48,7 +48,7 @@ export default function Header() {
 
         <div className="hidden md:flex items-center gap-4">
           <Link href="#email" onClick={handleWaitlistClick} className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors">
-            Join the Waitlist
+            Join Waitlist
           </Link>
         </div>
 

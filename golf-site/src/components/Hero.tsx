@@ -93,7 +93,7 @@ export default function Hero() {
                     type="submit"
                     className="absolute top-1/2 right-0 transform -translate-y-5.5 rounded-full bg-emerald-600 py-3 px-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
                   >
-                    Join the Waitlist
+                    Join Waitlist
                   </button>
                 </div>
               </form>

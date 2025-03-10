@@ -34,7 +34,7 @@ export default function CallToAction() {
               className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-sm font-medium text-emerald-600 shadow transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               onClick={handleWaitlistClick}
             >
-              Join the Waitlist
+              Join Waitlist
             </Link>
             <Link
               href="/demo"
